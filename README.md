@@ -13,8 +13,9 @@ forecast (see [Language notes](#language-notes)). The project is primarily
 Python; two analyses use R, where the standard tooling for those specific
 tasks is more mature.
 
-**Start here:** open [`dashboard.html`](dashboard.html) directly in a browser
-for a visual summary of everything below, no server or build step needed.
+**Start here:** [view the dashboard live](https://htmlpreview.github.io/?https://github.com/DAlanMtz/houston-housing-market-analytics/blob/main/dashboard.html)
+for a visual summary of everything below, or open [`dashboard.html`](dashboard.html)
+directly in a browser: it's a self-contained file, no server or build step needed.
 
 ## Headline findings
 
