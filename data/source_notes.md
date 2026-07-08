@@ -1,15 +1,16 @@
-# Source Notes: all three public datasets
+# Source Notes: all four public datasets
 
-This file documents where each column in the three public datasets
-(`houston_housing_market.csv`, `houston_housing_market_extended.csv`, and
-`houston_county_submarkets.csv`) comes from, how it was accessed, and what
-license or attribution terms apply. It reflects the data strategy selected
-during the discovery phase of this project (Strategy B, modified): Redfin as
-the primary machine-readable dataset, with FRED, City of Houston permits, and
-Zillow ZHVI as supporting series, and HAR used only for narrative context,
-never as redistributed structured data. The extended dataset adds six further
-public, redistribution-safe sources; the county dataset reuses the Redfin
-source at a different grain. See the relevant sections below for both.
+This file documents where each column in the four public datasets
+(`houston_housing_market.csv`, `houston_housing_market_extended.csv`,
+`houston_county_submarkets.csv`, and `houston_city_submarkets.csv`) comes
+from, how it was accessed, and what license or attribution terms apply. It
+reflects the data strategy selected during the discovery phase of this
+project (Strategy B, modified): Redfin as the primary machine-readable
+dataset, with FRED, City of Houston permits, and Zillow ZHVI as supporting
+series, and HAR used only for narrative context, never as redistributed
+structured data. The extended dataset adds six further public,
+redistribution-safe sources; the county and city datasets reuse the Redfin
+source at finer grains. See the relevant sections below for all three.
 
 ## Redfin Data Center (primary source)
 
@@ -48,6 +49,28 @@ source at a different grain. See the relevant sections below for both.
   non-seasonally-adjusted).
 - **License/attribution**: same as the metro-level source. Attribute as
   "Redfin Data Center."
+
+### Redfin Data Center, city grain (`houston_city_submarkets.csv` only)
+
+- **What it provides**: the same fields as the county-grain source above,
+  plus a derived `avg_monthly_sales` and `thin_market` flag, at city grain
+  instead of county grain.
+- **Access**: the same Redfin Data Center bulk download, city-level market
+  tracker file, filtered locally to every city Redfin's own
+  `PARENT_METRO_REGION` field assigns to the Houston, TX metro area (165
+  cities).
+- **Geography**: individual cities within the Houston metro, per Redfin's
+  own city boundary definitions, which do not always match municipal
+  incorporated limits or Census-designated places.
+- **Cadence and adjustment note**: same as the metro- and county-level
+  sources (monthly, non-seasonally-adjusted).
+- **License/attribution**: same as the metro-level source. Attribute as
+  "Redfin Data Center."
+- **Note on reliability**: 149 of 165 cities average under 50 sales a
+  month and are flagged `thin_market` in the dataset. Redfin itself does
+  not compute `months_inventory` or the `_yoy_change` columns for some of
+  its thinnest markets, which shows up as nulls concentrated in flagged
+  cities.
 
 ## FRED / Freddie Mac: `MORTGAGE30US`
 
@@ -193,6 +216,7 @@ relevant public HAR.com page, never as a transcribed or redistributed dataset.
 | Source | Geography |
 |---|---|
 | Redfin, Zillow (ZHVI, ZORI), FHFA | Houston metro area (MSA/CBSA-based, comparable but not boundary-identical across providers) |
+| Redfin county and city datasets | Individual counties and cities within the metro, per Redfin's own boundary definitions |
 | City of Houston permits | City of Houston permitting jurisdiction (narrower than the metro) |
 | Houston MSA unemployment and payroll | Houston MSA (BLS definition) |
 | FRED mortgage rate, WTI oil price | National (no Houston-specific series exists for either) |

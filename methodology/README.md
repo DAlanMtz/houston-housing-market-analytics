@@ -233,3 +233,28 @@ Pipeline steps:
    price levels can be compared on relative appreciation.
 
 Column detail: [`../data/data_dictionary_county.md`](../data/data_dictionary_county.md).
+
+## 7. City-level submarket dataset
+
+Source: [`build_city_dataset.py`](build_city_dataset.py), which loads the
+same Redfin bulk source used for v1 and the county dataset, at city grain
+instead of county or metro grain, filtered to the 165 cities Redfin assigns
+to the Houston metro. Writes `data/houston_city_submarkets.csv`. This does
+not touch any of the other three datasets; it's a fourth, independent file
+built from the same primary source.
+
+Pipeline steps:
+
+1. Load the Redfin city-level market tracker, filtered during research to
+   Houston-metro cities, All Residential property type, non-seasonally-
+   adjusted (same filtering convention as v1 and the county dataset).
+2. Rename columns to match the established naming convention.
+3. Compute `price_index_2012_base100`, same method as the county dataset.
+4. Compute `avg_monthly_sales` (each city's average `closed_sales` across
+   its full history) and flag `thin_market` for any city averaging under 50
+   sales a month. 149 of 165 cities are flagged. This threshold is a
+   judgment call, not a Redfin-published cutoff; it exists so the dataset is
+   explicit about which cities are reliable enough for month-to-month
+   reading, rather than leaving that check to whoever uses the file.
+
+Column detail: [`../data/data_dictionary_city.md`](../data/data_dictionary_city.md).
