@@ -1,0 +1,10 @@
+"predictor","target","lag_months","f_statistic","p_value","significant_at_5pct"
+"mortgage_rate_30yr (first diff)","sales_yoy_change (first diff)",3,1.246,0.2951,FALSE
+"mortgage_rate_30yr (first diff)","sales_yoy_change (first diff)",6,1.035,0.4047,FALSE
+"mortgage_rate_30yr (first diff)","sales_yoy_change (first diff)",12,0.818,0.6315,FALSE
+"oil_price_yoy_change (first diff)","sales_yoy_change (first diff)",3,10.084,0,TRUE
+"oil_price_yoy_change (first diff)","sales_yoy_change (first diff)",6,6.213,0,TRUE
+"oil_price_yoy_change (first diff)","sales_yoy_change (first diff)",12,3.835,1e-04,TRUE
+"employment_yoy_change (first diff)","sales_yoy_change (first diff)",3,18.747,0,TRUE
+"employment_yoy_change (first diff)","sales_yoy_change (first diff)",6,9.938,0,TRUE
+"employment_yoy_change (first diff)","sales_yoy_change (first diff)",12,5.48,0,TRUE
